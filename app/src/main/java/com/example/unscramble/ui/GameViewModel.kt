@@ -15,4 +15,8 @@ class GameViewModel: ViewModel() {
     // mengakses backing property _uiState menggunakan fungsi asStateFlow() untuk mendapatkan StateFlow yang immutable (read-only).
     val uiState : StateFlow<GameUiState> = _uiState.asStateFlow()
 
+    // menambahkan variabel currentWord dengan tipe String untuk menyimpan kata saat ini.
+    private lateinit var currentWord: String
+
+
 }
