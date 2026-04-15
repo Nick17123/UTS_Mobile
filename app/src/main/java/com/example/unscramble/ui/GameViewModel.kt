@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import com.example.unscramble.data.allWords
 
 // membuat class GameViewMode didalam package Ui dengan ekstensi compose.
 class GameViewModel: ViewModel() {
@@ -18,5 +19,17 @@ class GameViewModel: ViewModel() {
     // menambahkan variabel currentWord dengan tipe String untuk menyimpan kata saat ini.
     private lateinit var currentWord: String
 
+    // menambahkan methode pickRandomWordAndShuffle() untuk memilih kata secara acak dari daftar kata yang ada
+    // dalam variabel allWords. Kemudian mengacak kata tersebut menggunakan fungsi shuffleCurrentWord().
+    private fun pickRandomWordAndShuffle(): String {
+        // memilih kata secara acak dari daftar kata yang ada dalam variabel allWords.
+        currentWord = allWords.random()
+        if (usedWords.contains(currentWord)) {
+            return pickRandomWordAndShuffle()
+        } else {
+            usedWords.add(currentWord)
+            return shuffleCurrentWord(currentWord)
+        }
+    }
 
 }
