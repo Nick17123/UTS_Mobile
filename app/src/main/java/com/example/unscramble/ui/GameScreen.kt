@@ -55,10 +55,14 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.unscramble.R
 import com.example.unscramble.ui.theme.UnscrambleTheme
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 
 @Composable
 // menambahkan argumen kedua dengan tipe GameViewModel dengan nilai default berupa viewModel().
 fun GameScreen( gameViewModel: GameViewModel = viewModel()) {
+    // menambahkan variabel baru bernama gameUiState
+    val gameUiState by gameViewModel.uiState.collectAsState()
     val mediumPadding = dimensionResource(R.dimen.padding_medium)
 
     Column(
