@@ -51,4 +51,9 @@ class GameViewModel: ViewModel() {
         _uiState.value = GameUiState(currentScrambledWord = pickRandomWordAndShuffle())
     }
 
+    // Menambahkan blok init ke GameViewModel dan panggil metode resetGame() dari situ.
+    init {
+        resetGame()
+    }
+
 }
