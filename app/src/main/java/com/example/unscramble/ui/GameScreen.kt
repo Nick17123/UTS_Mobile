@@ -82,6 +82,11 @@ fun GameScreen( gameViewModel: GameViewModel = viewModel()) {
         GameLayout(
             // Meneruskan gameUiState.currentScrambledWord ke composable GameLayout()
             currentScrambledWord = gameUiState.currentScrambledWord,
+            // Menambahkan argumen onKeyboardDone ke composable GameLayout()
+            onKeyboardDone = { },
+            // Menambahkan argumen onUserGuessChanged ke composable GameLayout()
+            onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
+
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
@@ -135,7 +140,13 @@ fun GameStatus(score: Int, modifier: Modifier = Modifier) {
 
 @Composable
 // menambahkan argumen currentScrambledWord dengan tipe String untuk menampilkan kata yang akan diacak.
-fun GameLayout(currentScrambledWord: String, modifier: Modifier = Modifier) {
+// menambahkan dua argumen tambahan. Argumen pertama adalah onUserGuessChanged, berupa lambda yang menerima
+// parameter bertipe String dan tidak mengembalikan nilai (Unit). Argumen kedua adalah onKeyboardDone, berupa
+// lambda tanpa parameter dan tidak mengembalikan nilai (Unit).
+fun GameLayout(onUserGuessChanged : (String) -> Unit,
+               onKeyboardDone: () -> Unit,
+               currentScrambledWord: String,
+               modifier: Modifier = Modifier) {
     val mediumPadding = dimensionResource(R.dimen.padding_medium)
 
     Card(
@@ -178,14 +189,14 @@ fun GameLayout(currentScrambledWord: String, modifier: Modifier = Modifier) {
                     unfocusedContainerColor = colorScheme.surface,
                     disabledContainerColor = colorScheme.surface,
                 ),
-                onValueChange = { },
+                onValueChange = onUserGuessChanged,
                 label = { Text(stringResource(R.string.enter_your_word)) },
                 isError = false,
                 keyboardOptions = KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Done
                 ),
                 keyboardActions = KeyboardActions(
-                    onDone = { }
+                    onDone = { onKeyboardDone()}
                 )
             )
         }
