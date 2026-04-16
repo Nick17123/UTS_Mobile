@@ -143,7 +143,7 @@ fun GameLayout(currentScrambledWord: String, modifier: Modifier = Modifier) {
         elevation = CardDefaults.cardElevation(defaultElevation = 5.dp)
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(mediumPadding),
+            verticalArrangement = Arrangement.spacedBy(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(mediumPadding)
         ) {
@@ -157,9 +157,11 @@ fun GameLayout(currentScrambledWord: String, modifier: Modifier = Modifier) {
                 style = typography.titleMedium,
                 color = colorScheme.onPrimary
             )
+            // menampilkan kata yang akan diacak menggunakan composable Text()
             Text(
-                text = "scrambleun",
-                style = typography.displayMedium
+                text = currentScrambledWord,
+                fontSize = 45.sp,
+                modifier = modifier.align(Alignment.CenterHorizontally)
             )
             Text(
                 text = stringResource(R.string.instructions),
