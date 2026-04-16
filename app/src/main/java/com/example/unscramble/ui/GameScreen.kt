@@ -86,7 +86,6 @@ fun GameScreen( gameViewModel: GameViewModel = viewModel()) {
             onKeyboardDone = { },
             // Menambahkan argumen onUserGuessChanged ke composable GameLayout()
             onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
-
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()

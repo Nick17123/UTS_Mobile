@@ -1,6 +1,10 @@
 package com.example.unscramble.ui
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -70,4 +74,11 @@ class GameViewModel: ViewModel() {
             }
         }
     }
+    // menambahkan methode yang menerima parameter bertipe String berupa kata tebakan pengguna.
+    fun updateUserGuess(guessedWord: String){
+        userGuess = guessedWord
+    }
+    // menambahkan sebuah properti var bernama userGuess
+    var userGuess by mutableStateOf("")
+        private set
 }
