@@ -174,7 +174,7 @@ fun GameLayout(onUserGuessChanged : (String) -> Unit,
             Text(
                 text = currentScrambledWord,
                 fontSize = 45.sp,
-                modifier = modifier.align(Alignment.CenterHorizontally)
+                modifier = Modifier.align(Alignment.CenterHorizontally)
             )
             Text(
                 text = stringResource(R.string.instructions),
