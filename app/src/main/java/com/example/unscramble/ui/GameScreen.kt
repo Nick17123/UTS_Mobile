@@ -84,6 +84,8 @@ fun GameScreen( gameViewModel: GameViewModel = viewModel()) {
             currentScrambledWord = gameUiState.currentScrambledWord,
             // Menambahkan argumen onKeyboardDone ke composable GameLayout()
             onKeyboardDone = { },
+            // Menambahkan argumen userGuess ke composable GameLayout()
+            userGuess = gameViewModel.userGuess,
             // Menambahkan argumen onUserGuessChanged ke composable GameLayout()
             onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
             modifier = Modifier
@@ -183,7 +185,7 @@ fun GameLayout(onUserGuessChanged : (String) -> Unit,
                 value = userGuess,
                 singleLine = true,
                 shape = shapes.large,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = modifier.fillMaxWidth(),
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = colorScheme.surface,
                     unfocusedContainerColor = colorScheme.surface,

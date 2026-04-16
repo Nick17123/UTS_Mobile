@@ -60,20 +60,6 @@ class GameViewModel: ViewModel() {
     init {
         resetGame()
     }
-
-    // membuat fungsi methode
-    fun checkUserGuess(){
-        // menambahkan blok if else untuk memeriksa apakah kata yang dimasukkan oleh pengguna
-        // sama dengan kata yang akan ditampilkan saat ini (currentWord).
-        if (userGuess.equals(currentWord, ignoreCase = true)) {
-    } else { // Tebakan pengguna salah maka tampilan error IsGuessedWrong menjadi true MutableStateFlow<T>.
-        // update() mengupdate MutableStateFlow.value dengan memanggil lambda yang diteruskan
-        // dan mengembalikan value.
-            _uiState.update { currentState ->
-                currentState.copy(isGuessedWordWrong = true)
-            }
-        }
-    }
     // menambahkan methode yang menerima parameter bertipe String berupa kata tebakan pengguna.
     fun updateUserGuess(guessedWord: String){
         userGuess = guessedWord
