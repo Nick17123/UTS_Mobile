@@ -143,6 +143,7 @@ fun GameStatus(score: Int, modifier: Modifier = Modifier) {
 // parameter bertipe String dan tidak mengembalikan nilai (Unit). Argumen kedua adalah onKeyboardDone, berupa
 // lambda tanpa parameter dan tidak mengembalikan nilai (Unit).
 fun GameLayout(onUserGuessChanged : (String) -> Unit,
+               userGuess: String,
                onKeyboardDone: () -> Unit,
                currentScrambledWord: String,
                modifier: Modifier = Modifier) {
@@ -179,7 +180,7 @@ fun GameLayout(onUserGuessChanged : (String) -> Unit,
                 style = typography.titleMedium
             )
             OutlinedTextField(
-                value = "",
+                value = userGuess,
                 singleLine = true,
                 shape = shapes.large,
                 modifier = Modifier.fillMaxWidth(),
