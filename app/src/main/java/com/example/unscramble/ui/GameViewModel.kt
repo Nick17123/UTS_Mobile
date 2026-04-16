@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import com.example.unscramble.data.allWords
+import kotlinx.coroutines.flow.update
 
 // membuat class GameViewMode didalam package Ui dengan ekstensi compose.
 class GameViewModel: ViewModel() {
@@ -51,9 +52,22 @@ class GameViewModel: ViewModel() {
         _uiState.value = GameUiState(currentScrambledWord = pickRandomWordAndShuffle())
     }
 
-    // Menambahkan blok init ke GameViewModel dan panggil metode resetGame() dari situ.
+    // Menambahkan blok init ke GameViewModel dan panggil methode resetGame() dari situ.
     init {
         resetGame()
     }
 
+    // membuat fungsi methode
+    fun checkUserGuess(){
+        // menambahkan blok if else untuk memeriksa apakah kata yang dimasukkan oleh pengguna
+        // sama dengan kata yang akan ditampilkan saat ini (currentWord).
+        if (userGuess.equals(currentWord, ignoreCase = true)) {
+    } else { // Tebakan pengguna salah maka tampilan error IsGuessedWrong menjadi true MutableStateFlow<T>.
+        // update() mengupdate MutableStateFlow.value dengan memanggil lambda yang diteruskan
+        // dan mengembalikan value.
+            _uiState.update { currentState ->
+                currentState.copy(isGuessedWordWrong = true)
+            }
+        }
+    }
 }
