@@ -80,6 +80,8 @@ fun GameScreen( gameViewModel: GameViewModel = viewModel()) {
             style = typography.titleLarge,
         )
         GameLayout(
+            // Meneruskan gameUiState.currentScrambledWord ke composable GameLayout()
+            currentScrambledWord = gameUiState.currentScrambledWord,
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
@@ -132,7 +134,8 @@ fun GameStatus(score: Int, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun GameLayout(modifier: Modifier = Modifier) {
+// menambahkan argumen currentScrambledWord dengan tipe String untuk menampilkan kata yang akan diacak.
+fun GameLayout(currentScrambledWord: String, modifier: Modifier = Modifier) {
     val mediumPadding = dimensionResource(R.dimen.padding_medium)
 
     Card(
