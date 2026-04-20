@@ -3,7 +3,6 @@ package com.example.unscramble.ui
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -67,4 +66,14 @@ class GameViewModel: ViewModel() {
     // menambahkan sebuah properti var bernama userGuess
     var userGuess by mutableStateOf("")
         private set
+
+    fun checkUserGuess() {
+        // Update the score if the guess is correct
+        if (userGuess.equals(currentWord, ignoreCase = true)
+        ) {} else{_uiState.update { currentState ->
+            currentState.copy(isGuessedWordWrong = true)}}
+
+        // reset user guess
+        updateUserGuess("")
+    }
 }
