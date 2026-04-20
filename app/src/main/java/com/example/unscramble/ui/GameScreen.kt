@@ -151,6 +151,7 @@ fun GameLayout(onUserGuessChanged : (String) -> Unit,
                userGuess: String,
                onKeyboardDone: () -> Unit,
                currentScrambledWord: String,
+               userGuessWrong: String,
                modifier: Modifier = Modifier) {
     val mediumPadding = dimensionResource(R.dimen.padding_medium)
 
@@ -196,7 +197,7 @@ fun GameLayout(onUserGuessChanged : (String) -> Unit,
                 ),
                 onValueChange = onUserGuessChanged,
                 label = { Text(stringResource(R.string.enter_your_word)) },
-                isError = false,
+                isError = isGuessWrong(),
                 keyboardOptions = KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Done
                 ),
