@@ -82,8 +82,9 @@ fun GameScreen( gameViewModel: GameViewModel = viewModel()) {
         GameLayout(
             // Meneruskan gameUiState.currentScrambledWord ke composable GameLayout()
             currentScrambledWord = gameUiState.currentScrambledWord,
-            // Menambahkan argumen onKeyboardDone ke composable GameLayout()
-            onKeyboardDone = { },
+            // Menambahkan argumen onKeyboardDone ke composable GameLayout() dengan
+            // lambda yang akan dipanggil ketika tombol keyboard ditekan.
+            onKeyboardDone = { gameViewModel.checkUserGuess()},
             // Menambahkan argumen userGuess ke composable GameLayout()
             userGuess = gameViewModel.userGuess,
             // Menambahkan argumen onUserGuessChanged ke composable GameLayout()
@@ -103,7 +104,9 @@ fun GameScreen( gameViewModel: GameViewModel = viewModel()) {
 
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = { }
+                // Menambahkan onClick ke composable submit Button() untuk memanggil checkUserGuess()
+                // dari GameViewModel.
+                onClick = {gameViewModel.checkUserGuess()}
             ) {
                 Text(
                     text = stringResource(R.string.submit),
