@@ -70,7 +70,7 @@ class GameViewModel: ViewModel() {
     fun checkUserGuess() {
         // Update the score if the guess is correct
         if (userGuess.equals(currentWord, ignoreCase = true)
-        ) {} else{_uiState.update { currentState ->
+        ) else{_uiState.update { currentState ->
             currentState.copy(isGuessedWordWrong = true)}}
 
         // reset user guess

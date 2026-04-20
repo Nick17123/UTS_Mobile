@@ -89,6 +89,9 @@ fun GameScreen( gameViewModel: GameViewModel = viewModel()) {
             userGuess = gameViewModel.userGuess,
             // Menambahkan argumen onUserGuessChanged ke composable GameLayout()
             onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
+            // menambahkan isGuessWrong untuk mengakses properti IsGuessedWordWrong dari gameUiState
+            // dan menampilkannya menggunakan composable GameStatus() dengan parameter score.
+            isGuessWrong = gameUiState.isGuessedWordWrong,
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
@@ -151,7 +154,7 @@ fun GameLayout(onUserGuessChanged : (String) -> Unit,
                userGuess: String,
                onKeyboardDone: () -> Unit,
                currentScrambledWord: String,
-               userGuessWrong: String,
+               isGuessWrong: Boolean,
                modifier: Modifier = Modifier) {
     val mediumPadding = dimensionResource(R.dimen.padding_medium)
 
@@ -197,7 +200,7 @@ fun GameLayout(onUserGuessChanged : (String) -> Unit,
                 ),
                 onValueChange = onUserGuessChanged,
                 label = { Text(stringResource(R.string.enter_your_word)) },
-                isError = isGuessWrong(),
+                isError = isGuessWrong,
                 keyboardOptions = KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Done
                 ),
